@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import getTeamSeasonStats from '../utils/seasonStats';
+import getTeamGameStats from '../utils/gameStats';
 
 function Week(props) {
   const [week, setWeek] = useState('1');
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    setData(getTeamSeasonStats(week));
+    setData(getTeamGameStats(week));
   }, [week]);
 
   console.log(data);
+
+  const handleWeekChange = (event) => {
+    const buttonName = event.target.textContent;
+    setWeek(buttonName.replace(/^\D+/g, ''));
+  };
 
   return (
     <main className="container">
@@ -28,60 +34,60 @@ function Week(props) {
         </button>
 
         <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a className="dropdown-item" href="/week1">
+          <button className="dropdown-item" onClick={handleWeekChange}>
             Week 1
-          </a>
-          <a className="dropdown-item" href="/week2">
+          </button>
+          <button className="dropdown-item" onClick={handleWeekChange}>
             Week 2
-          </a>
-          <a className="dropdown-item" href="/week3">
+          </button>
+          <button className="dropdown-item" onClick={handleWeekChange}>
             Week 3
-          </a>
-          <a className="dropdown-item" href="/week4">
+          </button>
+          <button className="dropdown-item" onClick={handleWeekChange}>
             Week 4
-          </a>
-          <a className="dropdown-item" href="/week5">
+          </button>
+          <button className="dropdown-item" onClick={handleWeekChange}>
             Week 5
-          </a>
-          <a className="dropdown-item" href="/week6">
+          </button>
+          <button className="dropdown-item" onClick={handleWeekChange}>
             Week 6
-          </a>
-          <a className="dropdown-item" href="/week7">
+          </button>
+          <button className="dropdown-item" onClick={handleWeekChange}>
             Week 7
-          </a>
-          <a className="dropdown-item" href="/week8">
+          </button>
+          <button className="dropdown-item" onClick={handleWeekChange}>
             Week 8
-          </a>
-          <a className="dropdown-item" href="/week9">
+          </button>
+          <button className="dropdown-item" onClick={handleWeekChange}>
             Week 9
-          </a>
-          <a className="dropdown-item" href="/week10">
+          </button>
+          <button className="dropdown-item" onClick={handleWeekChange}>
             Week 10
-          </a>
-          <a className="dropdown-item" href="/week11">
+          </button>
+          <button className="dropdown-item" onClick={handleWeekChange}>
             Week 11
-          </a>
-          <a className="dropdown-item" href="/week12">
+          </button>
+          <button className="dropdown-item" onClick={handleWeekChange}>
             Week 12
-          </a>
-          <a className="dropdown-item" href="/week13">
+          </button>
+          <button className="dropdown-item" onClick={handleWeekChange}>
             Week 13
-          </a>
-          <a className="dropdown-item" href="/week14">
+          </button>
+          <button className="dropdown-item" onClick={handleWeekChange}>
             Week 14
-          </a>
-          <a className="dropdown-item" href="/week15">
+          </button>
+          <button className="dropdown-item" onClick={handleWeekChange}>
             Week 15
-          </a>
-          <a className="dropdown-item" href="/week16">
+          </button>
+          <button className="dropdown-item" onClick={handleWeekChange}>
             Week 16
-          </a>
-          <a className="dropdown-item" href="/week17">
+          </button>
+          <button className="dropdown-item" onClick={handleWeekChange}>
             Week 17
-          </a>
-          <a className="dropdown-item" href="/week18">
+          </button>
+          <button className="dropdown-item" onClick={handleWeekChange}>
             Week 18
-          </a>
+          </button>
         </div>
       </div>
     </main>
