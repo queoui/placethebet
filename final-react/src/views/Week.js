@@ -1,22 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import getTeamSeasonStats from '../utils/seasonStats';
 import getTeamGameStats from '../utils/gameStats';
+import getTeamInfo from '../utils/teamInfo';
 
 function Week(props) {
   const [week, setWeek] = useState('1');
   const [data, setData] = useState([]);
+  const [teamImg, setTeamImg] = useState([]);
 
   useEffect(() => {
-    setData(getTeamGameStats(week));
+    getTeamGameStats(week).then((data) => setData(data));
+    getTeamInfo().then((teamImg) => setTeamImg(teamImg));
   }, [week]);
-
-  console.log(data);
 
   const handleWeekChange = (event) => {
     const buttonName = event.target.textContent;
     setWeek(buttonName.replace(/^\D+/g, ''));
   };
 
+  console.log(data);
   return (
     <main className="container">
       <h1 className="text-black">Week {week}</h1>
@@ -88,6 +89,20 @@ function Week(props) {
           <button className="dropdown-item" onClick={handleWeekChange}>
             Week 18
           </button>
+        </div>
+      </div>
+
+      <div className="card" style={{ width: '18rem' }}>
+        <img
+          className="card-img-top"
+          src={teamImg[0].WikipediaLogoUrl}
+          alt="Card image cap"
+        />
+        <div className="card-body">
+          <p className="card-text">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
         </div>
       </div>
     </main>
