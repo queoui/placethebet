@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useReducer } from 'react';
 import getTeamGameStats from '../utils/gameStats';
 import getTeamInfo from '../utils/teamInfo';
+import getSeasonStats from '../utils/seasonStats';
 import TeamCard from './TeamCard';
 
 function teamReducer(teamData, action) {
@@ -12,18 +13,34 @@ function teamReducer(teamData, action) {
   }
 }
 
+function seasonReducer(seasonData, action) {
+  switch (action.type) {
+    case 'getSeasonData':
+      return [...seasonData, action.payload.teamData];
+    default:
+      return seasonData;
+  }
+}
+
 function Week(props) {
   const [week, setWeek] = useState('1');
-  const [data, setData] = useState([]);
+  const [gameData, setData] = useState([]);
   const [teamData, dispatchTeamData] = useReducer(teamReducer, []);
+  const [seasonData, dispatchSeasonData] = useReducer(seasonReducer, []);
 
   useEffect(() => {
-    getTeamGameStats(week).then((data) => setData(data));
+    getTeamGameStats(week).then((gameData) => setData(gameData));
   }, [week]);
 
   useEffect(() => {
     getTeamInfo().then((teamData) =>
       dispatchTeamData({ type: 'getTeamData', payload: { teamData: teamData } })
+    );
+    getSeasonStats().then((seasonData) =>
+      dispatchSeasonData({
+        type: 'getSeasonData',
+        payload: { SeasonData: seasonData },
+      })
     );
   }, []);
 
@@ -107,7 +124,14 @@ function Week(props) {
         </div>
       </div>
       {teamData[0].map((teamData) => {
-        return <TeamCard key={teamData.TeamID} teamData={teamData} />;
+        return (
+          <TeamCard
+            key={teamData.TeamID}
+            teamData={teamData}
+            gameData={gameData}
+            seasonData={seasonData}
+          />
+        );
       })}
     </main>
   );

@@ -1,4 +1,4 @@
-async function getTeamSeasonStats(week) {
+async function getSeasonStats(week) {
   try {
     let response = await fetch(
       'https://cors-anywhere.herokuapp.com/https://api.sportsdata.io/api/nfl/odds/json/TeamSeasonStats/2022REG',
@@ -14,4 +14,4 @@ async function getTeamSeasonStats(week) {
   }
 }
 
-export default getTeamSeasonStats;
+export default getSeasonStats;
