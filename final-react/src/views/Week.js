@@ -1,23 +1,38 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import getTeamGameStats from '../utils/gameStats';
 import getTeamInfo from '../utils/teamInfo';
+import TeamCard from './TeamCard';
+
+function teamReducer(teamData, action) {
+  switch (action.type) {
+    case 'getTeamData':
+      return [...teamData, action.payload.teamData];
+    default:
+      return teamData;
+  }
+}
 
 function Week(props) {
   const [week, setWeek] = useState('1');
   const [data, setData] = useState([]);
-  const [teamImg, setTeamImg] = useState([]);
+  const [teamData, dispatchTeamData] = useReducer(teamReducer, []);
 
   useEffect(() => {
     getTeamGameStats(week).then((data) => setData(data));
-    getTeamInfo().then((teamImg) => setTeamImg(teamImg));
   }, [week]);
+
+  useEffect(() => {
+    getTeamInfo().then((teamData) =>
+      dispatchTeamData({ type: 'getTeamData', payload: { teamData: teamData } })
+    );
+  }, []);
 
   const handleWeekChange = (event) => {
     const buttonName = event.target.textContent;
     setWeek(buttonName.replace(/^\D+/g, ''));
   };
 
-  console.log(data);
+  console.log(teamData);
   return (
     <main className="container">
       <h1 className="text-black">Week {week}</h1>
@@ -91,20 +106,9 @@ function Week(props) {
           </button>
         </div>
       </div>
-
-      <div className="card" style={{ width: '18rem' }}>
-        <img
-          className="card-img-top"
-          src={teamImg[0].WikipediaLogoUrl}
-          alt="Card image cap"
-        />
-        <div className="card-body">
-          <p className="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-        </div>
-      </div>
+      {teamData[0].map((teamData) => {
+        return <TeamCard key={teamData.TeamID} teamData={teamData} />;
+      })}
     </main>
   );
 }
