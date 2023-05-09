@@ -2,7 +2,7 @@ import React, { useState, useEffect, useReducer } from 'react';
 import getTeamGameStats from '../utils/gameStats';
 import getTeamInfo from '../utils/teamInfo';
 import getSeasonStats from '../utils/seasonStats';
-import TeamCard from './TeamCard';
+import MatchCard from './MatchCard';
 
 function teamReducer(teamData, action) {
   switch (action.type) {
@@ -49,11 +49,10 @@ function Week(props) {
     setWeek(buttonName.replace(/^\D+/g, ''));
   };
 
-  console.log(teamData);
+  console.log(gameData);
   return (
     <main className="container">
       <h1 className="text-black">Week {week}</h1>
-
       <div className="dropdown">
         <button
           className="btn btn-secondary dropdown-toggle"
@@ -123,16 +122,17 @@ function Week(props) {
           </button>
         </div>
       </div>
-      {teamData[0].map((teamData) => {
-        return (
-          <TeamCard
-            key={teamData.TeamID}
-            teamData={teamData}
-            gameData={gameData}
-            seasonData={seasonData}
-          />
-        );
-      })}
+      {gameData[0] &&
+        gameData.map((game, gameData) => {
+          return (
+            <MatchCard
+              key={game.TeamGameID}
+              teamData={teamData}
+              gameData={game}
+              seasonData={seasonData}
+            />
+          );
+        })}
     </main>
   );
 }
