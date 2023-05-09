@@ -1,19 +1,17 @@
 import React from 'react';
 
 export default function MatchCard({ teamData, gameData, seasonData }) {
-  const homeTeam =
-    gameData['HomeOrAway'] === 'HOME' ? gameData['Team'] : gameData['Opponent'];
-  const awayTeam =
-    gameData['HomeOrAway'] === 'AWAY' ? gameData['Team'] : gameData['Opponent'];
+  if (gameData['HomeOrAway'] !== 'HOME') {
+    return;
+  }
+  const homeTeam = gameData['Team'];
+  const awayTeam = gameData['Opponent'];
   let homeTeamIMG;
   let awayTeamIMG;
 
   teamData[0].map((team) => {
-    console.log(team.Key);
-    console.log(homeTeam);
     if (team.Key === homeTeam) {
       homeTeamIMG = team.WikipediaLogoUrl;
-      console.log(homeTeamIMG);
     }
     if (team.Key === awayTeam) {
       awayTeamIMG = team.WikipediaLogoUrl;
@@ -21,15 +19,17 @@ export default function MatchCard({ teamData, gameData, seasonData }) {
   });
 
   return (
-    <div className="card" style={{ width: '18rem' }}>
+    <div className="card col" style={{ width: '18rem' }}>
       <img
         className="card-img-top"
+        style={{ width: '50%', height: '50%' }}
         src={homeTeamIMG}
         // src="..."
         alt={homeTeam}
       />
       <img
         className="card-img-top"
+        style={{ width: '50%', height: '50%' }}
         src={awayTeamIMG}
         // src="..."
         alt={awayTeam}

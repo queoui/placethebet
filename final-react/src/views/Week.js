@@ -22,7 +22,7 @@ function seasonReducer(seasonData, action) {
   }
 }
 
-function Week(props) {
+function Week() {
   const [week, setWeek] = useState('1');
   const [gameData, setData] = useState([]);
   const [teamData, dispatchTeamData] = useReducer(teamReducer, []);
@@ -42,7 +42,6 @@ function Week(props) {
         payload: { SeasonData: seasonData },
       })
     );
-    console.log(gameData);
   }, []);
 
   const handleWeekChange = (event) => {
@@ -50,6 +49,7 @@ function Week(props) {
     setWeek(buttonName.replace(/^\D+/g, ''));
   };
 
+  console.log(gameData);
   return (
     <main className="container">
       <h1 className="text-black">Week {week}</h1>
@@ -122,17 +122,21 @@ function Week(props) {
           </button>
         </div>
       </div>
-      {gameData[0] &&
-        gameData.slice(gameData.length / 2).map((game, gameData) => {
-          return (
-            <MatchCard
-              key={game.TeamGameID}
-              teamData={teamData}
-              gameData={game}
-              seasonData={seasonData}
-            />
-          );
-        })}
+      <div className="row row-cols-4 justify-content-around">
+        {!gameData[0] && <h3>Loading . . .</h3>}
+        {gameData[0] &&
+          teamData[0] &&
+          gameData.map((game, gameData) => {
+            return (
+              <MatchCard
+                key={game.TeamGameID}
+                teamData={teamData}
+                gameData={game}
+                seasonData={seasonData}
+              />
+            );
+          })}
+      </div>
     </main>
   );
 }
