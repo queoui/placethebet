@@ -42,6 +42,7 @@ function Week(props) {
         payload: { SeasonData: seasonData },
       })
     );
+    console.log(gameData);
   }, []);
 
   const handleWeekChange = (event) => {
@@ -49,7 +50,6 @@ function Week(props) {
     setWeek(buttonName.replace(/^\D+/g, ''));
   };
 
-  console.log(gameData);
   return (
     <main className="container">
       <h1 className="text-black">Week {week}</h1>
@@ -123,7 +123,7 @@ function Week(props) {
         </div>
       </div>
       {gameData[0] &&
-        gameData.map((game, gameData) => {
+        gameData.slice(gameData.length / 2).map((game, gameData) => {
           return (
             <MatchCard
               key={game.TeamGameID}
