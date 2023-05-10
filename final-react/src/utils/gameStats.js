@@ -10,9 +10,6 @@ async function getTeamGameStats(week) {
         },
       }
     );
-    if (response.status === 429) {
-      throw new Error('Too many API calls ... ');
-    }
     return await response.json();
   } catch (err) {
     console.error(err);

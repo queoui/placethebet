@@ -16,7 +16,7 @@ function teamReducer(teamData, action) {
 function seasonReducer(seasonData, action) {
   switch (action.type) {
     case 'getSeasonData':
-      return [...seasonData, action.payload.teamData];
+      return [...seasonData, action.payload.seasonData];
     default:
       return seasonData;
   }
@@ -39,7 +39,7 @@ function Week() {
     getSeasonStats().then((seasonData) =>
       dispatchSeasonData({
         type: 'getSeasonData',
-        payload: { SeasonData: seasonData },
+        payload: { seasonData: seasonData },
       })
     );
   }, []);
@@ -49,7 +49,7 @@ function Week() {
     setWeek(buttonName.replace(/^\D+/g, ''));
   };
 
-  console.log(gameData);
+  console.log(seasonData);
   return (
     <main className="container">
       <h1>Week {week}</h1>
@@ -126,6 +126,7 @@ function Week() {
         {!gameData[0] && <h3>Loading . . .</h3>}
         {gameData[0] &&
           teamData[0] &&
+          seasonData[0] &&
           gameData.map((game, gameData) => {
             return (
               <MatchCard
