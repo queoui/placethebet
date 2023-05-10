@@ -52,7 +52,7 @@ function Week() {
   console.log(gameData);
   return (
     <main className="container">
-      <h1 className="text-black">Week {week}</h1>
+      <h1>Week {week}</h1>
       <div className="dropdown">
         <button
           className="btn btn-secondary dropdown-toggle"
@@ -122,7 +122,7 @@ function Week() {
           </button>
         </div>
       </div>
-      <div className="row row-cols-4 justify-content-around">
+      <div className="row row-cols-6 justify-content-around">
         {!gameData[0] && <h3>Loading . . .</h3>}
         {gameData[0] &&
           teamData[0] &&

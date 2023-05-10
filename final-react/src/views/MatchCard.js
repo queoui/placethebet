@@ -19,25 +19,36 @@ export default function MatchCard({ teamData, gameData, seasonData }) {
   });
 
   return (
-    <div className="card col" style={{ width: '18rem' }}>
-      <img
-        className="card-img-top"
-        style={{ width: '50%', height: '50%' }}
-        src={homeTeamIMG}
-        // src="..."
-        alt={homeTeam}
-      />
-      <img
-        className="card-img-top"
-        style={{ width: '50%', height: '50%' }}
-        src={awayTeamIMG}
-        // src="..."
-        alt={awayTeam}
-      />
-      <div className="card-body">
-        <p className="card-text">
-          {homeTeam} , {awayTeam}
-        </p>
+    <div className="card col my-3" style={{ width: '18rem' }}>
+      <div class="row">
+        <img
+          className="float-left col mt-4"
+          style={{ width: '75px', height: '75px', objectFit: 'contain' }}
+          src={homeTeamIMG}
+          // src="..."
+          alt={homeTeam}
+        />
+        <img
+          className="float-right col mt-4"
+          style={{ width: '75px', height: '75px', objectFit: 'contain' }}
+          src={awayTeamIMG}
+          // src="..."
+          alt={awayTeam}
+        />
+      </div>
+      <div className="row card-body">
+        <h5
+          className="card-text text-justify-left col"
+          style={{ textAlign: 'center' }}
+        >
+          {homeTeam}
+        </h5>
+        <h5
+          className="card-text text-justify-right col"
+          style={{ textAlign: 'center' }}
+        >
+          {awayTeam}
+        </h5>
       </div>
     </div>
   );

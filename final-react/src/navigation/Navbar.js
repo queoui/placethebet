@@ -21,12 +21,12 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item active">
-              <a className="nav-link" href="/">
+              <a className="nav-link text-white" href="/">
                 Home
               </a>
             </li>
             <li className="nav-item active">
-              <a className="nav-link" href="/week">
+              <a className="nav-link text-white" href="/week">
                 Weekly View
               </a>
             </li>

@@ -3,7 +3,7 @@ function Home(props) {
 
   return (
     <main className="container">
-      <h1 className="text-black">{title}</h1>
+      <h1>{title}</h1>
     </main>
   );
 }
