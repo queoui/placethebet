@@ -22,7 +22,6 @@ export default function MatchCard({ teamData, gameData, seasonData }) {
     }
   });
   seasonData[0].map((total) => {
-    console.log(total.Score);
     if (total.Team === homeTeam) {
       homeEarnedPoints = (total.Score / total.Games).toFixed(2);
       homeGivenPoints = (total.OpponentScore / total.Games).toFixed(2);
@@ -33,15 +32,27 @@ export default function MatchCard({ teamData, gameData, seasonData }) {
     }
   });
 
+  const homeDiff = parseFloat(homeEarnedPoints - awayGivenPoints).toFixed(2);
+  const awayDiff = parseFloat(awayEarnedPoints - homeGivenPoints).toFixed(2);
+  const homePrediction = parseFloat(
+    Number(homeEarnedPoints) + Number(homeDiff)
+  ).toFixed(2);
+  const awayPrediction = parseFloat(
+    Number(awayEarnedPoints) + Number(awayDiff)
+  ).toFixed(2);
+
   return (
     <div className="card col my-3" style={{ width: '18rem' }}>
-      <div class="row">
+      <div className="row">
         <img
           className="float-left col mt-4"
           style={{ width: '75px', height: '75px', objectFit: 'contain' }}
           src={homeTeamIMG}
           alt={homeTeam}
         />
+        <h5 className="mt-5 col " style={{ textAlign: 'center' }}>
+          VS
+        </h5>
         <img
           className="float-right col mt-4"
           style={{ width: '75px', height: '75px', objectFit: 'contain' }}
@@ -56,6 +67,7 @@ export default function MatchCard({ teamData, gameData, seasonData }) {
         >
           {homeTeam}
         </h5>
+        <div className="mx-5 col"></div>
         <h5
           className="card-text text-justify-right col"
           style={{ textAlign: 'center' }}
@@ -70,6 +82,9 @@ export default function MatchCard({ teamData, gameData, seasonData }) {
         >
           {homeEarnedPoints}
         </p>
+        <div className="col" style={{ textAlign: 'center' }}>
+          Pts.
+        </div>
         <p
           className="card-text text-justify-right col"
           style={{ textAlign: 'center' }}
@@ -84,6 +99,9 @@ export default function MatchCard({ teamData, gameData, seasonData }) {
         >
           {homeGivenPoints}
         </p>
+        <div className="col" style={{ textAlign: 'center' }}>
+          Opp. Pts.
+        </div>
         <p
           className="card-text text-justify-right col"
           style={{ textAlign: 'center' }}
@@ -96,27 +114,43 @@ export default function MatchCard({ teamData, gameData, seasonData }) {
           className="card-text text-justify-left col"
           style={{
             textAlign: 'center',
-            background:
-              homeEarnedPoints - awayGivenPoints >
-              awayEarnedPoints - homeGivenPoints
-                ? 'green'
-                : 'red',
           }}
         >
-          {(homeEarnedPoints - awayGivenPoints).toFixed(2)}
+          {homeDiff}
         </p>
+        <div className="col" style={{ textAlign: 'center' }}>
+          Diff.
+        </div>
         <p
           className="card-text text-justify-right col"
           style={{
             textAlign: 'center',
-            background:
-              awayEarnedPoints - homeGivenPoints >
-              homeEarnedPoints - awayGivenPoints
-                ? 'green'
-                : 'red',
           }}
         >
-          {(awayEarnedPoints - homeGivenPoints).toFixed(2)}
+          {awayDiff}
+        </p>
+      </div>
+      <div className="row data-body">
+        <p
+          className="card-text text-justify-left col"
+          style={{
+            textAlign: 'center',
+            background: homePrediction > awayPrediction ? 'green' : 'red',
+          }}
+        >
+          {homePrediction}
+        </p>
+        <div className="col" style={{ textAlign: 'center' }}>
+          Prediction
+        </div>
+        <p
+          className="card-text text-justify-right col"
+          style={{
+            textAlign: 'center',
+            background: awayPrediction > homePrediction ? 'green' : 'red',
+          }}
+        >
+          {awayPrediction}
         </p>
       </div>
     </div>
