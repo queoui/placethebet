@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useReducer } from 'react';
+import ClipLoader from 'react-spinners/ClipLoader';
 import getTeamGameStats from '../utils/gameStats';
 import getTeamInfo from '../utils/teamInfo';
 import getSeasonStats from '../utils/seasonStats';
@@ -123,7 +124,11 @@ function Week() {
         </div>
       </div>
       <div className="row row-cols-6 justify-content-around">
-        {!gameData[0] && <h3>Loading . . .</h3>}
+        {!gameData[0] && (
+          <div className="loader-container">
+            <ClipLoader color={'white'} size={75} />
+          </div>
+        )}
         {gameData[0] &&
           teamData[0] &&
           seasonData[0] &&
