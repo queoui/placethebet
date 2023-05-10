@@ -42,7 +42,10 @@ export default function MatchCard({ teamData, gameData, seasonData }) {
   ).toFixed(2);
 
   return (
-    <div className="card col my-3" style={{ width: '18rem' }}>
+    <div
+      className="card col my-3"
+      style={{ width: '18rem', borderWidth: '5px' }}
+    >
       <div className="row">
         <img
           className="float-left col mt-4"
@@ -135,7 +138,8 @@ export default function MatchCard({ teamData, gameData, seasonData }) {
           className="card-text text-justify-left col"
           style={{
             textAlign: 'center',
-            background: homePrediction > awayPrediction ? 'green' : 'red',
+            background: homePrediction > awayPrediction ? 'green' : '#B8262D',
+            margin: '0',
           }}
         >
           {homePrediction}
