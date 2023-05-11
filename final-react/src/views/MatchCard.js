@@ -32,14 +32,18 @@ export default function MatchCard({ teamData, gameData, seasonData }) {
     }
   });
 
-  const homeDiff = parseFloat(homeEarnedPoints - awayGivenPoints).toFixed(2);
-  const awayDiff = parseFloat(awayEarnedPoints - homeGivenPoints).toFixed(2);
-  const homePrediction = parseFloat(
-    Number(homeEarnedPoints) + Number(homeDiff)
-  ).toFixed(2);
-  const awayPrediction = parseFloat(
-    Number(awayEarnedPoints) + Number(awayDiff)
-  ).toFixed(2);
+  const homeDiff = parseFloat((awayGivenPoints - homeEarnedPoints) / 2).toFixed(
+    2
+  );
+  const awayDiff = parseFloat((homeGivenPoints - awayEarnedPoints) / 2).toFixed(
+    2
+  );
+  const homePrediction = Math.round(
+    parseFloat(Number(homeEarnedPoints) + Number(homeDiff)).toFixed(2)
+  );
+  const awayPrediction = Math.round(
+    parseFloat(Number(awayEarnedPoints) + Number(awayDiff)).toFixed(2)
+  );
 
   return (
     <div
@@ -151,7 +155,7 @@ export default function MatchCard({ teamData, gameData, seasonData }) {
           className="card-text text-justify-right col"
           style={{
             textAlign: 'center',
-            background: awayPrediction > homePrediction ? 'green' : 'red',
+            background: awayPrediction > homePrediction ? 'green' : '#B8262D',
           }}
         >
           {awayPrediction}
