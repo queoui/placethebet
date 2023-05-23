@@ -1,10 +1,12 @@
 async function getSeasonStats(week) {
   try {
+    const nflUrl = import.meta.env.VITE_NFL_URL + 'nfl/odds/json/TeamSeasonStats/2022REG'
+    const apikey = import.meta.env.VITE_API_KEY
     let response = await fetch(
-      'https://cors-anywhere.herokuapp.com/https://api.sportsdata.io/api/nfl/odds/json/TeamSeasonStats/2022REG',
+      nflUrl,
       {
         headers: {
-          'Ocp-Apim-Subscription-Key': 'efb56e725ab0490c89730b91c0d7bb60',
+          'Ocp-Apim-Subscription-Key': apikey,
         },
       }
     );
