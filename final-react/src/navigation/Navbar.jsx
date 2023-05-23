@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 
 // import views
-import Home from './../views/Home';
+import Home from '../views/Home';
 import Week from '../views/Week';
 function Navbar() {
   return (
