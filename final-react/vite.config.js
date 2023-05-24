@@ -5,7 +5,6 @@ import { loadEnv } from "vite";
 
 const env = loadEnv("development", process.cwd(), "");
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   server: {
@@ -18,3 +17,8 @@ export default defineConfig({
     },
   },
 });
+
+
+// References
+// https://vitejs.dev/config/
+// https://vitejs.dev/config/server-options.html
