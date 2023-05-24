@@ -1,6 +1,6 @@
 async function getTeamInfo(week) {
   try {
-    const nflUrl = import.meta.env.VITE_NFL_URL + 'nfl/fantasy/json/Teams'
+    const nflUrl = '/api/nfl/fantasy/json/Teams'
     const apikey = import.meta.env.VITE_API_KEY
     let response = await fetch(
       nflUrl,
