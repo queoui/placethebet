@@ -3,6 +3,8 @@ import { Route, Routes } from 'react-router-dom';
 // import views
 import Home from '../views/Home';
 import Week from '../views/Week';
+import Login from '../Components/Login';
+import Logout from '../Components/Logout';
 function Navbar() {
   return (
     <div>
@@ -29,6 +31,10 @@ function Navbar() {
               <a className="nav-link text-white" href="/week">
                 Weekly View
               </a>
+            </li>
+            <li className="nav-item active">
+              <Login />
+              <Logout />
             </li>
           </ul>
         </div>

@@ -1,8 +1,9 @@
 {
-  "name": "final-react",
+  "name": "frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@auth0/auth0-react": "^2.1.0",
     "@popperjs/core": "^2.11.7",
     "@testing-library/dom": "^9.3.0",
     "@testing-library/jest-dom": "^5.16.5",
@@ -19,7 +20,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "vite --port 8080",
+    "start": "vite --port 8000",
     "build": "vite build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -50,6 +51,6 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.3.4",
-    "vite": "^4.3.7"
+    "vite": "^4.3.9"
   }
 }
