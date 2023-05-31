@@ -1,6 +1,7 @@
 import {FastifyInstance, FastifyReply, FastifyRequest} from "fastify";
 import {User} from "./db/entities/User.js";
 import {ICreateUsersBody} from "./types.js";
+// import{getAuth, signInWithEmailAndPassword} from 'firebase';
 
 async function DoggrRoutes(app: FastifyInstance, _options = {}) {
 	if (!app) {
@@ -14,27 +15,10 @@ async function DoggrRoutes(app: FastifyInstance, _options = {}) {
 	app.get("/dbTest", async (request: FastifyRequest, reply: FastifyReply) => {
 		return request.em.find(User, {});
 	});
-	
 
-	
-	// Core method for adding generic SEARCH http method
-	// app.route<{Body: { email: string}}>({
-	// 	method: "SEARCH",
-	// 	url: "/users",
-	//
-	// 	handler: async(req, reply) => {
-	// 		const { email } = req.body;
-	//
-	// 		try {
-	// 			const theUser = await req.em.findOne(User, { email });
-	// 			console.log(theUser);
-	// 			reply.send(theUser);
-	// 		} catch (err) {
-	// 			console.error(err);
-	// 			reply.status(500).send(err);
-	// 		}
-	// 	}
-	// });
+	app.post("/login", async (request: FastifyRequest, reply: FastifyReply)=>{
+
+	})
 	
 	// CRUD
 	// C

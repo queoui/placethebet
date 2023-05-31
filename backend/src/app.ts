@@ -2,7 +2,7 @@ import Fastify from "fastify";
 import cors from '@fastify/cors'
 import multipart from '@fastify/multipart';
 import { AuthPlugin } from "./plugins/auth.js";
-import { FastifyBadWordsPlugin } from "./plugins/badwords.js";
+import {FastifyFireBaseAuth} from "./plugins/firebase";
 import { FastifySearchHttpMethodPlugin } from "./plugins/http_search.js";
 import { FastifyMikroOrmPlugin } from "./plugins/mikro.js";
 import DoggrRoutes from "./routes/routes.js";
@@ -47,8 +47,8 @@ await app.register(cors, {
 await app.register(multipart);
 await app.register(FastifyMikroOrmPlugin, config);
 await app.register(FastifySearchHttpMethodPlugin, {});
-await app.register(FastifyBadWordsPlugin);
 await app.register(AuthPlugin);
 await app.register(DoggrRoutes, {});
+await app.register(FastifyFireBaseAuth)
 
 export default app;
