@@ -1,10 +1,13 @@
 import './App.css';
 import Navbar from './navigation/Navbar';
+import { AuthContextProvider } from "./utils/Auth";
 
 function App() {
   return (
     <>
-      <Navbar />
+      <AuthContextProvider>
+        <Navbar />
+      </AuthContextProvider>
     </>
   );
 }

@@ -3,6 +3,8 @@
 import { initializeApp } from "firebase/app";
 import fp from "fastify-plugin";
 import {FastifyInstance } from "fastify";
+import {getAuth} from "firebase/auth";
+import {getFirestore} from "firebase/firestore";
 
 // TODO: Add SDKs for Firebase products that you want to use
 
@@ -42,3 +44,11 @@ const fastifyFirebase = async function(app:FastifyInstance, _options){
 export const FastifyFireBaseAuth = fp(fastifyFirebase, {
 	name: "fastify-auth",
 });
+
+
+//
+//
+// export const app = initializeApp(firebaseConfig);
+// export const auth = getAuth(app);
+// export const db = getFirestore(app);
+

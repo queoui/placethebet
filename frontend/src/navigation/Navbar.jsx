@@ -5,6 +5,7 @@ import Home from '../views/Home';
 import Week from '../views/Week';
 import Login from '../Components/Login';
 import Logout from '../Components/Logout';
+import Signup from "../Components/SignUp";
 function Navbar() {
   return (
     <div>
@@ -33,8 +34,14 @@ function Navbar() {
               </a>
             </li>
             <li className="nav-item active">
-              <Login />
-              <Logout />
+              <a className="nav-link text-white" href="/loginPage">
+                Login
+              </a>
+            </li>
+            <li className="nav-item active">
+              <a className="nav-link text-white" href="/logoutPage">
+                Logout
+              </a>
             </li>
           </ul>
         </div>
@@ -42,6 +49,9 @@ function Navbar() {
       <Routes>
         <Route path="/" element={<Home title="placethebet.net" />} />
         <Route path="/week" element={<Week />} />
+        <Route path={"/loginPage"} element={<Login/>}/>
+        <Route path={"/logoutPage"} element={<Logout/>}/>
+        <Route path={"/signup"} element={<Signup/>}/>
       </Routes>
     </div>
   );
