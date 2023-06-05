@@ -18,21 +18,32 @@ async function betRoutes(app: FastifyInstance, _options = {}) {
 		throw new Error("Fastify instance has no value during routes construction");
 	}
 
-	app.get<{Body: {email: string, password:string}}>("/login", async (req, reply) => {
+	app.post<{Body: {email: string, password:string}}>("/login", async (req, reply) => {
 
-		const auth = getAuth(app.firebase);
-		const db = getFirestore(app.firebase);
-		const {email, password} = req.body;
-		return signInWithEmailAndPassword(auth, email, password);
+		try {
+			const auth = getAuth(app.firebase);
+			const db = getFirestore(app.firebase);
+			const { email, password } = req.body;
+			return signInWithEmailAndPassword(auth, email, password);
+		}catch(err){
+			console.log("failed to login", err.message);
+			return reply.status(500).send({message:err.message});
+		}
 
 	});
 
 
 	app.get("/logout", async (req, reply) => {
 
-		const auth = getAuth(app.firebase);
-		const db = getFirestore(app.firebase);
-		return signOut(auth);
+		try {
+			const auth = getAuth(app.firebase);
+			const db = getFirestore(app.firebase);
+			return signOut(auth);
+		}catch(err){
+			console.log("failed to logout", err.message);
+			return reply.status(500).send({message:err.message});
+
+		}
 	});
 
 	app.post<{Body: {email: string, password:string}}>("/signup", async (req, reply) => {
@@ -50,7 +61,6 @@ async function betRoutes(app: FastifyInstance, _options = {}) {
 					savedShows: []
 				});
 				console.log("created new user");
-				app.log.info("created new user");
 				return reply.send(jsonData.user.getIdToken())
 			}catch(err){
 				console.log("failed to create new user", err.message);

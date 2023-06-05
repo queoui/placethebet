@@ -7,15 +7,19 @@ const AuthContext = createContext(null);
 
 export function signUp(userEmail, userPassword) {
 
-	console.log(userEmail)
 	return httpClient.post("/signup", {email: userEmail, password: userPassword}).catch(err => {console.error(err)});
 }
 
-function logIn(email, password) {
+export function logIn(userEmail, userPassword) {
+	return httpClient.post("/login", {email: userEmail, password: userPassword}).catch(err => {console.error(err)});
+
 }
 
 
-function logOut() {
+export function logout() {
+
+	return httpClient.get("/logout").catch(err => {console.error(err)});
+
 }
 
 
