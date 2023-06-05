@@ -7,7 +7,8 @@ const AuthContext = createContext(null);
 
 export function signUp(userEmail, userPassword) {
 
-	return httpClient.get("/signup", {email: userEmail, password: userPassword});
+	console.log(userEmail)
+	return httpClient.post("/signup", {email: userEmail, password: userPassword}).catch(err => {console.error(err)});
 }
 
 function logIn(email, password) {

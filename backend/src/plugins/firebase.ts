@@ -39,16 +39,9 @@ declare module "fastify" {
 const fastifyFirebase = async function(app:FastifyInstance, _options){
 	const firebaseApp = initializeApp(firebaseConfig);
 	app.decorate("firebase", firebaseApp);
-}
+};
 
 export const FastifyFireBaseAuth = fp(fastifyFirebase, {
 	name: "fastify-auth",
 });
-
-
-//
-//
-// export const app = initializeApp(firebaseConfig);
-// export const auth = getAuth(app);
-// export const db = getFirestore(app);
 

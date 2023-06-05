@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const serverIP = import.meta.env.API_HOST;``
+const serverIP = import.meta.env.API_HOST;
 const serverPort = import.meta.env.PORT;
 
 const serverUrl = `http://${serverIP}:${serverPort}`;

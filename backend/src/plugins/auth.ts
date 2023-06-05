@@ -25,5 +25,5 @@ export const AuthPlugin = fp(async function(app: FastifyInstance, opts: FastifyP
 		} catch (err) {
 			reply.send(err);
 		}
-	})
-})
+	});
+});
