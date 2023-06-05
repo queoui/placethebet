@@ -47,11 +47,7 @@ async function betRoutes(app: FastifyInstance, _options = {}) {
 	});
 
 	app.post<{Body: {email: string, password:string}}>("/signup", async (req, reply) => {
-		console.log("get it ")
 			const { email, password } = req.body;
-
-			console.log(email);
-			console.log(password);
 
 			try {
 				const auth = getAuth(app.firebase);

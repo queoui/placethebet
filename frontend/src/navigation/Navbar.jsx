@@ -6,7 +6,13 @@ import Week from '../views/Week';
 import Login from '../Components/Login';
 import Logout from '../Components/Logout';
 import Signup from "../Components/SignUp";
+import {UserAuth} from "../utils/Auth";
+
+
 function Navbar() {
+  const {user} = UserAuth();
+
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -33,16 +39,26 @@ function Navbar() {
                 Weekly View
               </a>
             </li>
+            {user?.email ?(
+            <li className="nav-item active">
+              <a className="nav-link text-white" href="/logoutPage">
+                Logout
+              </a>
+            </li>
+              ) : (
+                <>
             <li className="nav-item active">
               <a className="nav-link text-white" href="/loginPage">
                 Login
               </a>
             </li>
             <li className="nav-item active">
-              <a className="nav-link text-white" href="/logoutPage">
-                Logout
-              </a>
+            <a className="nav-link text-white" href="/signup">
+            Sign Up
+            </a>
             </li>
+                </>
+              )}
           </ul>
         </div>
       </nav>
