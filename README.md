@@ -1,4 +1,5 @@
-# placethebet
+# placethebet - Nicholas Muller
+
 
 Overview:
 
