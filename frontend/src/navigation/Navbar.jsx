@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Link, Route, Routes } from "react-router-dom";
 
 // import views
 import Home from '../views/Home';
@@ -6,12 +6,10 @@ import Week from '../views/Week';
 import Login from '../Components/Login';
 import Logout from '../Components/Logout';
 import Signup from "../Components/SignUp";
-import {UserAuth} from "../utils/Auth";
-
+import { userState } from "../Components/state";
+import { useRecoilValue } from "recoil";
 
 function Navbar() {
-  const {user} = UserAuth();
-
 
   return (
     <div>
@@ -30,35 +28,37 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item active">
-              <a className="nav-link text-white" href="/">
+              <Link className="nav-link text-white" to="/">
                 Home
-              </a>
+              </Link>
             </li>
             <li className="nav-item active">
-              <a className="nav-link text-white" href="/week">
+              <Link className="nav-link text-white" to="/week">
                 Weekly View
-              </a>
+              </Link>
             </li>
-            {user?.email ?(
+            {useRecoilValue(userState) &&
             <li className="nav-item active">
-              <a className="nav-link text-white" href="/logoutPage">
+              <Link className="nav-link text-white" to="/logoutPage">
                 Logout
-              </a>
+              </Link>
             </li>
-              ) : (
+            }
+            {!useRecoilValue(userState) &&
                 <>
             <li className="nav-item active">
-              <a className="nav-link text-white" href="/loginPage">
+              <Link className="nav-link text-white" to="/loginPage">
                 Login
-              </a>
+              </Link>
             </li>
             <li className="nav-item active">
-            <a className="nav-link text-white" href="/signup">
+            <Link className="nav-link text-white" to="/signup">
             Sign Up
-            </a>
+            </Link>
             </li>
                 </>
-              )}
+            }
+
           </ul>
         </div>
       </nav>

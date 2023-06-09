@@ -1,22 +1,33 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
-import { UserAuth,  signUp} from '../utils/Auth';
+import {useRecoilState} from "recoil";
+import {userState} from "./state";
+import {httpClient} from "../utils/HttpClient";
+
 
 const Signup = () => {
-	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
-	// const { user, signUp } = UserAuth();
-	const navigate = useNavigate()
+	const [userEmail, setEmail] = useState('');
+	const [userPassword, setPassword] = useState('');
+	const [Key, userSignUp] = useRecoilState(userState);
+	const navigate = useNavigate();
+
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			signUp(email, password)
+				const user1 = await httpClient.post("/signup", { email: userEmail, password: userPassword });
+				const userUID = user1.data
+				userSignUp(userUID)
+			  navigate('/')
+
 		} catch (error) {
 			console.log(error);
 
 		}
 	};
+
+		useEffect(()=>{
+		}, [Key])
 
 	return (
 		<>

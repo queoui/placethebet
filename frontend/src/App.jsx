@@ -1,13 +1,16 @@
 import './App.css';
 import Navbar from './navigation/Navbar';
-import { AuthContextProvider } from "./utils/Auth";
+// import { AuthContextProvider } from "./utils/Auth";
+import { RecoilRoot } from "recoil";
 
 function App() {
   return (
     <>
-      <AuthContextProvider>
+      <RecoilRoot>
+      {/*<AuthContextProvider>*/}
         <Navbar />
-      </AuthContextProvider>
+      {/*</AuthContextProvider>*/}
+      </RecoilRoot>
     </>
   );
 }
