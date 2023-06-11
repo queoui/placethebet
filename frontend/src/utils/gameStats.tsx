@@ -8,7 +8,8 @@ async function getTeamGameStats(week) {
         'Ocp-Apim-Subscription-Key': apikey,
       },
     });
-    return await response.json();
+    return JSON.stringify(response.json());
+  //   return await response.json()
   } catch (err) {
     console.error(err);
   }

@@ -1,9 +1,15 @@
 import { useRecoilValue } from "recoil";
 import { userState } from "../Components/state";
+import { microserviceClient} from "../utils/microserviceclient";
 
 
 function Home(props) {
   const { title } = props;
+
+
+    const text  = async ()=> {await microserviceClient.get("sayhello/");
+    console.log(text.data);
+  }
 
   return (
     <main>

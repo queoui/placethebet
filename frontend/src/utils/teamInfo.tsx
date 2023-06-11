@@ -10,8 +10,11 @@ async function getTeamInfo(week) {
         },
       }
     );
-    return await response.json();
+    return JSON.stringify(response.json());
+
+    // return await response.json();
   } catch (err) {
+
     console.error(err);
   }
 }

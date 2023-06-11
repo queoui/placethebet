@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
-import {httpClient} from "../utils/HttpClient";
+import {httpClient} from "../utils/HttpClient.tsx";
 import { useRecoilState } from "recoil";
-import { userState } from "./state";
+import { userState } from "./state.tsx";
 
 
 
@@ -15,11 +15,14 @@ export const Login = () => {
 
 
   const handleSubmit = async (e) => {
+    let userUID;
     e.preventDefault();
     setError('')
     try {
       const user1 = await httpClient.post("/login", {email: userEmail, password: userPassword}).catch(err => {console.error(err)});
-      const userUID = user1.data
+      if (user1){
+        userUID = user1.data
+      }
       userSignUp(userUID)
       navigate('/')
 

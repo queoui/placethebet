@@ -15,7 +15,7 @@
     "seed:create": "pnpm mikro-orm-esm seeder:create ",
     "seed:run": "pnpm mikro-orm-esm seeder:run",
     "db:reset": "pnpm schema:drop && pnpm schema:update && pnpm seed:run",
-    "startProd": "pnpm db:reset && pnpm start"
+    "startProd": "pnpm start"
   },
   "scriptsComments": {
     "dev": "Runs watcher dev server, see https://github.com/nodejs/node/issues/30810#issuecomment-1446093458 for no-warnings",

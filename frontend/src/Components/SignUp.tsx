@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import {useRecoilState} from "recoil";
-import {userState} from "./state";
-import {httpClient} from "../utils/HttpClient";
+import {userState} from "./state.tsx";
+import {httpClient} from "../utils/HttpClient.tsx";
 
 
 const Signup = () => {

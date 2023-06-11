@@ -14,4 +14,4 @@ ENV ADDRESS=0.0.0.0 PORT=8080
 
 RUN pnpm build
 
-CMD ["pnpm", "run start"]
+CMD ["pnpm", "startProd"]
